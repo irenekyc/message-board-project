@@ -1,0 +1,24 @@
+{
+  "name": "code-challenge-messageboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "env-cmd -f ./config/dev.env node src/app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bad-words": "^3.0.3",
+    "express": "^4.17.1",
+    "hbs": "^4.1.0",
+    "moment": "^2.24.0",
+    "mongodb": "^3.5.5",
+    "mongoose": "^5.9.6"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
+  }
+}

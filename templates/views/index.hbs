@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="images/clipboard-regular.svg">
+    <script src="https://kit.fontawesome.com/a1e74affc8.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>Irene's Message Board</title>
+</head>
+<body>
+    <div class="web-container">
+       {{>header}}
+        <div class="write-container">
+            <a href="/write"><i class="fas fa-pen"></i></a>
+            <span> Leave me a message</span>
+        </div>
+        <div class="messages-container">
+            {{#each Message}}
+            <div class="message-card">
+    <div class="profile-session">
+        <i class="far fa-user"></i>
+        <span class="user-name" id="user-name"> {{username}} </span>
+        <p class="create-Date" id="createdDate"> {{createDate}}</p>
+    </div>
+    <div class="message-session">
+        <div class="categories">
+            <span class="categories-bg {{categories}}-bg" id="categories "> {{categories}}</span>
+            
+        </div>
+        <div class="messageDetails">
+        <p id="message"> {{message}}</p>
+        </div>
+    </div>
+</div>
+{{/each}}
+           {{!-- <div class="message-card">
+    <div class="profile-session">
+        <i class="far fa-user"></i>
+        <span id="user-name"> Hihi{{username}} </span>
+        <p class="createDate" id="createdDate"> {{createdBy}}</p>
+    </div>
+    <div class="message-session">
+        <div class="categories">
+            <span class="categories-bg" id="categories {{categories}}"> {{categories}}</span>
+            
+        </div>
+        <p id="message"> {{message}}</p>
+    </div> --}}
+</div>
+            <!-- <div class="message-card">
+                <div class="profile-session">
+                    <i class="far fa-user"></i>
+                    <span id="user-name"> Irene</span>
+                    <p class="createDate" id="createdDate"> 25 Mar 2020</p>
+                </div>
+                <div class="message-session">
+                    <div class="categories">
+                        <span class="categories-bg" id="categories"> Compliment</span>
+                        
+                    </div>
+                    <p id="message"> Hi this is Irene</p>
+                </div>
+            </div> -->
+            
+            
+        </div>
+    </div>
+</body>
+</html>

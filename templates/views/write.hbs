@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Leave Irene a Message...</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="images/edit-solid.svg">
+    <script src="https://kit.fontawesome.com/a1e74affc8.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="web-container">
+        {{>header}}
+        <h1> Write a message</h1>
+        <span> {{message}}</span>
+        <br>
+        <form action="/save" method="post">
+            <div class="row">
+                <label for ="name"> Your Name </label>
+                <input type="text" name="username" placeholder="Your Name" id="name">
+             </div>
+             <div class="row">
+                <input type="radio" name="categories" id="compliment" value="compliment">
+                <label for ="compliment"> Compliment</label>
+                <input type="radio" name="categories" id="question" value="question">
+                <label for ="question"> Question</label>
+                <input type="radio" name="categories" id="suggestion" value="suggestion">
+                <label for ="suggestion"> Suggestions</label>
+                <input type="radio" name="categories" id="complain" value="complain">
+                <label for ="complain"> Complain</label>
+            </div>
+                <label for="message"> Message</label>
+                <textarea name="message" id="message"></textarea>
+            <div class="row">
+                <input type="submit" value="Send">
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+html{
+    background:#ECE5DD;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.web-container{
+    height:200vh;
+    width:100vw;
+    background:#ECE5DD;
+    padding:10px 8%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.header{
+    width:100%;
+    padding:10px 0;
+    text-align: center;
+}
+
+.header i{
+    color: #25D366;
+    font-size: 16px;
+    line-height: 24px;
+}
+.header a{
+    color: #25D366;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.write-container{
+    width:100vw;
+    height:25px;
+    padding:5px 8%;
+}
+
+.write-container i{
+ font-size:18px;
+ line-height:25px;
+ color:black;
+ margin-right:18px;
+}
+
+.write-container a{
+    color:black;
+}
+
+.messages-container{
+    margin-top:50px;
+    padding:0 8%;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.message-card{
+    width:80%;
+    min-height: 150px;
+    margin-top:10px;
+    border:1px solid lightgray;
+    display:flex;
+    align-items: center;
+    padding: 10px;
+    flex:1;
+    background: #E9E4ED;
+}
+.message-card:nth-child(even){
+    background: #DDE4EC;
+
+}
+
+.profile-session{
+    width:200px;
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center; }
+
+
+.message-session{
+    padding:0 10px;
+    width:100%;
+    height:100%;
+    flex:1;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.messageDetails{
+    flex:1;
+    font-size:16px;
+    line-height: 32px;
+}
+
+.categories{
+    font-size:12px;
+    line-height:16px;
+}
+
+.categories-bg{
+    padding:0 10px;
+
+}
+.compliment-bg{
+    background:#CD212A
+}
+
+.suggestion-bg{
+    background:#00836D;
+}
+
+.question-bg{
+    background: #007FDA;
+}
+
+.complain-bg{
+    background: #AD4E00;
+}
+
+.user-name{
+    font-size:16px;
+    line-height: 32px;
+}
+
+.create-Date{
+    font-size:12px;
+    line-height:20px;
+    color:gray;
+}
+
+form{
+    margin-top:2rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size:16px;
+    line-height:24px;
+}
+
+.row{
+    width:100%;
+    height:50px;
+}
+
+input[type="text"]{
+    height:24px;
+    font-size:16px;
+    line-height:24px;
+    outline:none;
+    border:none;
+    margin-left:5px;
+}
+
+label{
+    margin:5px;
+}
+
+textarea{
+    resize:none;
+    height:150px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    line-height:24px;
+    padding:5px;
+}
+
+input[type="submit"]{
+    font-size:16px;
+    line-height:24px;
+}
