@@ -13,10 +13,7 @@
 <body>
     <div class="web-container">
        {{>header}}
-        <div class="write-container">
-            <a href="/write"><i class="fas fa-pen"></i></a>
-            <span> Leave me a message</span>
-        </div>
+       {{>writeContainer}}
         <div class="messages-container">
             {{#each Message}}
             <div class="message-card">
@@ -36,37 +33,14 @@
     </div>
 </div>
 {{/each}}
-           {{!-- <div class="message-card">
-    <div class="profile-session">
-        <i class="far fa-user"></i>
-        <span id="user-name"> Hihi{{username}} </span>
-        <p class="createDate" id="createdDate"> {{createdBy}}</p>
-    </div>
-    <div class="message-session">
-        <div class="categories">
-            <span class="categories-bg" id="categories {{categories}}"> {{categories}}</span>
-            
-        </div>
-        <p id="message"> {{message}}</p>
-    </div> --}}
+          
 </div>
-            <!-- <div class="message-card">
-                <div class="profile-session">
-                    <i class="far fa-user"></i>
-                    <span id="user-name"> Irene</span>
-                    <p class="createDate" id="createdDate"> 25 Mar 2020</p>
-                </div>
-                <div class="message-session">
-                    <div class="categories">
-                        <span class="categories-bg" id="categories"> Compliment</span>
-                        
-                    </div>
-                    <p id="message"> Hi this is Irene</p>
-                </div>
-            </div> -->
+        <div class="pagination-container">
+            <a href="/messages?page=1"> Read All</a>
+        </div>
             
             
         </div>
-    </div>
+  
 </body>
 </html>
