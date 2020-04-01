@@ -23,7 +23,14 @@
            <span class="filter-text"> Sort By</span>
            <span class="sort-filter" id="sort-desc">Latest  </span>
            <span class="sort-filter" id="sort-asc">  Eariest </span>
+           <span class="sort-filter"> <a href="/filter?page=1">View All </a></span>
        </div>
+       <% if (categoryQuery) { %>
+        <div class="filter-text-container">
+           <p> Filter: Messages in <span>" <%= categoryQuery %> "</span></p>
+        </div>
+       <% } %>
+      
         <div class="messages-container">
             <% object.forEach(message => { %>
             <div class="message-card">
@@ -39,7 +46,6 @@
         </div>
         <div class="messageDetails">
         <p id="message"> <%= message.message %></p>
-        <img src='data:image/jpeg;base64, <%= message.image %>'>
         </div>
     </div>
 </div>

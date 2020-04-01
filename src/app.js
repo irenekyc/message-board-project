@@ -8,8 +8,7 @@ require('./mongoose')
 const moment = require('moment');
 const Filter = require ('bad-words')
 const ejs = require ('ejs')
-const multer = require ('multer')
-const sharp = require ('sharp')
+
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates')
@@ -69,7 +68,7 @@ app.get('/filter', async (req,res)=>{
             object.forEach((e)=>{
                  e.createDate = moment(e.createdAt).format("DD MMM YY")
                 })
-            return res.render('message.ejs', {object, currentPage:page, pages})
+            return res.render('message.ejs', {object, currentPage:page, pages, categoryQuery:false})
         }
     }
     catch(err) {
@@ -84,15 +83,10 @@ app.get('/write', (req, res)=>{
     })
 })
 
-const upload = multer({
-    limits: {
-        fileSize:1000000
-    }
-})
 
-app.post('/save', upload.single('image'), async (req, res)=>{
+
+app.post('/save', async (req, res)=>{
         const message = await new Message(req.body)
-        console.log(req)
         const filter = new Filter()
         if (filter.isProfane(message.username) || filter.isProfane(message.message)){
             return res.render('saveFailed', {

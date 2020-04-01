@@ -58,7 +58,7 @@ a{
 }
 
 .messages-container{
-    margin-top:50px;
+    margin-top:20px;
     padding:0 8%;
     width:100%;
     display:flex;
@@ -221,8 +221,21 @@ input[type="submit"]{
     justify-content: center;
     padding:20px 20px;
     margin-top:20px;
-    margin-bottom:-20px;
+    margin-bottom:10px;
+    border-bottom: 1px solid rgba(0,0,0,0.5)
     
+}
+.filter-text-container{
+    height:30px;
+    margin-top:20px;
+    width:100%;
+    font-size:16px;
+    line-height: 20px;
+    text-align:center;
+
+}
+.filter-text-container span {
+    padding: 5px 20px;
 }
 
 .filter-container span{
