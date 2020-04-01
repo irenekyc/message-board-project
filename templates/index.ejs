@@ -12,35 +12,35 @@
 </head>
 <body>
     <div class="web-container">
-       {{>header}}
-       {{>writeContainer}}
+        <%- include ('./partials/header') %>
+        <%-include ('./partials/write') %>
         <div class="messages-container">
-            {{#each Message}}
+            <% object.forEach(message => { %>
             <div class="message-card">
     <div class="profile-session">
         <i class="far fa-user"></i>
-        <span class="user-name" id="user-name"> {{username}} </span>
-        <p class="create-Date" id="createdDate"> {{createDate}}</p>
+        <span class="user-name" id="user-name"> <%= message.username %> </span>
+        <p class="create-Date" id="createdDate"> <%= message.createDate %></p>
     </div>
     <div class="message-session">
         <div class="categories">
-            <span class="categories-bg {{categories}}-bg" id="categories "> {{categories}}</span>
+            <span class="categories-bg <%= message.categories %>-bg" id="categories "> <%= message.categories %></span>
             
         </div>
         <div class="messageDetails">
-        <p id="message"> {{message}}</p>
+        <p id="message"> <%= message.message %></p>
         </div>
     </div>
 </div>
-{{/each}}
+<% }); %>
           
 </div>
         <div class="pagination-container">
-            <a href="/messages?page=1"> Read All</a>
+            <a href="/filter?page=1"> Read All</a>
         </div>
             
             
         </div>
-  
+  <script src="js/index.js"></script>
 </body>
 </html>

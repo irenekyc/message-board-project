@@ -5,18 +5,16 @@ const PORT = process.env.PORT
 const bodyParser = require('body-parser')
 const Message = require('./messageModel')
 require('./mongoose')
-const hbs = require('hbs')
 const moment = require('moment');
 const Filter = require ('bad-words')
+const ejs = require ('ejs')
 
 const publicDirectoryPath = path.join(__dirname, '../public')
-const viewsPath = path.join(__dirname, '../templates/views')
-const partialsPath = path.join(__dirname,'../templates/partials')
+const viewsPath = path.join(__dirname, '../templates')
 
 
-app.set('view engine', 'hbs')
+app.set('view engine', 'ejs')
 app.set('views', viewsPath)
-hbs.registerPartials(partialsPath)
 
 app.use(express.static(publicDirectoryPath))
 app.use(bodyParser.urlencoded({ extended: true })); 
@@ -25,64 +23,75 @@ app.listen(PORT, ()=>{
     console.log('Hi there! Server is now up on ' + PORT)
 })
 
-app.get('/', (req, res)=>{
-    Message.find({}).sort({'createdAt' :'descending'}).limit(5)
-    .then((messages)=>{
-        const object = messages        
+app.get('/', async (req, res)=>{
+    try{
+        const object = await Message.find({}).sort({'createdAt' :'descending'}).limit(3)
         object.forEach((e)=>{
             e.createDate = moment(e.createdAt).format("DD MMM YY")
         })
-        res.render('index', {Message : object})
-    }).catch()
+        res.render('index', {object})
+    }
+    catch{(err)=>
+        console.log(err)
+    }
     
 })
 
 //ALL Messages 
 ///*************Need Pagination */
-app.get('/messages', (req, res)=>{
+// app.get('/messages', (req, res)=>{
 
-    const page = parseInt(req.query.page)
-    const resPerPage = 5
-    Message.find({})
-    .sort({'createdAt' :'descending'})
-    .skip((resPerPage * page) - resPerPage)
-    .limit(resPerPage)
-    .then((messages)=>{
-        const object=messages
-        object.forEach((e)=>{
-            e.createDate = moment(e.createdAt).format("DD MMM YY")
-        })
-        res.render('index', {Message : object})
-    })
-    .catch((e)=>{
-        console.log(e)
-    })
-})
+//     const page = parseInt(req.query.page)
+//     const resPerPage = 5
+//     Message.find({})
+//     .sort({'createdAt' :'descending'})
+//     .skip((resPerPage * page) - resPerPage)
+//     .limit(resPerPage)
+//     .then((messages)=>{
+//         const object=messages
+//         object.forEach((e)=>{
+//             e.createDate = moment(e.createdAt).format("DD MMM YY")
+//         })
+//         res.render('index', {Message : object})
+//     })
+//     .catch((e)=>{
+//         console.log(e)
+//     })
+// })
+
 
 // Filter & sort 
-app.get('/messages/filter', async (req,res)=>{
+app.get('/filter', async (req,res)=>{
     const categoryQuery = req.query.category
     const page = parseInt(req.query.page) 
     const sortQuery = req.query.sort || 'descending' 
-    const resPerPage = 2
+    const resPerPage = 5
     try {
         if (categoryQuery) {
-            const foundMessage = await Message.find({categories: categoryQuery})
+            const foundMessages = await Message.find({categories: categoryQuery})
+            const pages = await Math.ceil(foundMessages.length / resPerPage)
+            const object = await Message.find({categories: categoryQuery})
             .sort({'createdAt' : sortQuery})
             .skip((resPerPage * page) - resPerPage)
             .limit(resPerPage)
-            // const numOfProducts = await Message.count({categories: categoryQuery});
-            return res.render('index', {Message : foundMessage})
+            console.log(pages)
+            object.forEach((e)=>{
+                e.createDate = moment(e.createdAt).format("DD MMM YY")
+                       })
+            return res.render('message.ejs', {object, currentPage:page, pages, categoryQuery})
         
         } else {
-            const foundMessage = await Message.find({})
+            const foundMessages = await Message.find({})
+            const pages = await Math.ceil(foundMessages.length / resPerPage)
+            const object = await Message.find({})
             .sort({'createdAt' : sortQuery})
             .skip((resPerPage * page) - resPerPage)
             .limit(resPerPage)
-            // const numOfProducts = await Message.count({categories: categoryQuery})
-            return res.render('index', {Message : foundMessage})
+            object.forEach((e)=>{
+                 e.createDate = moment(e.createdAt).format("DD MMM YY")
+                })
+            return res.render('message.ejs', {object, currentPage:page, pages})
         }
-        
     }
     catch(err) {
         throw new Error(err);

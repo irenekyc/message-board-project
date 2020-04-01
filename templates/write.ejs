@@ -12,9 +12,8 @@
 </head>
 <body>
     <div class="web-container">
-        {{>header}}
+        <%- include ('./partials/header') %>
         <h1> Write a message</h1>
-        <span> {{message}}</span>
         <br>
         <form action="/save" method="post">
             <div class="row">

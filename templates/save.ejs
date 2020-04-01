@@ -12,9 +12,11 @@
 </head>
 <body>
     <div class="web-container">
-        {{>header}}
+        <%- include ('./partials/header') %>
+        <%-include ('./partials/write') %>
+        
         <h1> Message is sent! </h1>
-        <h1>Thank you! {{username}}</h1>
+        <h1>Thank you! <%= username %></h1>
         <p> <a href="/"> Back</a> </p>
         <br>
 </body>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="images/clipboard-regular.svg">
+    <script src="https://kit.fontawesome.com/a1e74affc8.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+    <title>Irene's Message Board</title>
+</head>
+<body>
+    <div class="web-container">
+        <%- include ('./partials/header') %>
+        <%-include ('./partials/write') %>
+       <div class="filter-container">
+           <span class="filter-text"> Filter By </span>
+           <span class="category-filter compliment-bg"> <a href="/filter?category=compliment&page=1">Compliment </a></span>
+           <span class="category-filter question-bg"> <a href="/filter?category=question&page=1"> Question</a> </span>
+           <span class="category-filter suggestion-bg"> <a href="/filter?category=suggestion&page=1"> Suggestion</a> </span>
+           <span class="category-filter complain-bg"> <a href="/filter?category=complain&page=1"> Complain</a> </span>
+           <span class="filter-text"> Sort By</span>
+           <span class="sort-filter" id="sort-desc">Latest  </span>
+           <span class="sort-filter" id="sort-asc">  Eariest </span>
+       </div>
+        <div class="messages-container">
+            <% object.forEach(message => { %>
+            <div class="message-card">
+    <div class="profile-session">
+        <i class="far fa-user"></i>
+        <span class="user-name" id="user-name"> <%= message.username %> </span>
+        <p class="create-Date" id="createdDate"> <%= message.createDate %></p>
+    </div>
+    <div class="message-session">
+        <div class="categories">
+            <span class="categories-bg <%= message.categories %>-bg" id="categories "> <%= message.categories %></span>
+            
+        </div>
+        <div class="messageDetails">
+        <p id="message"> <%= message.message %></p>
+        </div>
+    </div>
+</div>
+<% }); %>
+          
+</div>
+        <div class="pagination-container">
+<% if(pages>1 && currentPage < pages){ %>
+<p class="next"> Next </p>
+<% } %>
+<% if(pages >1 && currentPage > 1 ){ %> 
+<p class="prev"> Prev </p>
+<% } %>
+
+        </div>
+            
+            
+        </div>
+<script src="js/index.js"></script>
+</body>
+</html>
