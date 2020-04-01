@@ -189,10 +189,30 @@ input[type="submit"]{
     margin-top:20px;
     padding-right:50px;
     text-align:right;
-    cursor: pointer;
+    position:relative;
     width:80vw;
     height:50px;
 }
+
+.prev, .next, .read-all{
+    
+    cursor: pointer;
+    width:100px;
+    height:25px;
+}
+
+.read-all, .next{
+    position:absolute;
+    right:50px;
+    top:0;
+}
+
+.prev {
+    position:absolute;
+    left:50px;
+    top:0;
+}
+
 
 .filter-container{
     width:100%;

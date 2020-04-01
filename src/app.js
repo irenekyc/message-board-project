@@ -8,6 +8,8 @@ require('./mongoose')
 const moment = require('moment');
 const Filter = require ('bad-words')
 const ejs = require ('ejs')
+const multer = require ('multer')
+const sharp = require ('sharp')
 
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates')
@@ -36,29 +38,6 @@ app.get('/', async (req, res)=>{
     }
     
 })
-
-//ALL Messages 
-///*************Need Pagination */
-// app.get('/messages', (req, res)=>{
-
-//     const page = parseInt(req.query.page)
-//     const resPerPage = 5
-//     Message.find({})
-//     .sort({'createdAt' :'descending'})
-//     .skip((resPerPage * page) - resPerPage)
-//     .limit(resPerPage)
-//     .then((messages)=>{
-//         const object=messages
-//         object.forEach((e)=>{
-//             e.createDate = moment(e.createdAt).format("DD MMM YY")
-//         })
-//         res.render('index', {Message : object})
-//     })
-//     .catch((e)=>{
-//         console.log(e)
-//     })
-// })
-
 
 // Filter & sort 
 app.get('/filter', async (req,res)=>{
@@ -105,9 +84,15 @@ app.get('/write', (req, res)=>{
     })
 })
 
+const upload = multer({
+    limits: {
+        fileSize:1000000
+    }
+})
 
-app.post('/save', async (req, res)=>{
-        const message = new Message(req.body)
+app.post('/save', upload.single('image'), async (req, res)=>{
+        const message = await new Message(req.body)
+        console.log(req)
         const filter = new Filter()
         if (filter.isProfane(message.username) || filter.isProfane(message.message)){
             return res.render('saveFailed', {
@@ -118,6 +103,7 @@ app.post('/save', async (req, res)=>{
           res.render('save', {
               username: message.username
           })
+
         }).catch(()=>
         {
             res.render('saveFailed', {

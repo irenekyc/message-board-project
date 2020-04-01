@@ -15,6 +15,9 @@ const messageSchema = new mongoose.Schema({
         required: true,
      trim: true
     },
+    image:{
+        type: Buffer
+    },
     createdate: {
         type:Date,
     }
